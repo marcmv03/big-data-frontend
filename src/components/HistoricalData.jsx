@@ -1,11 +1,12 @@
 import {react, useState,useEffect } from "react";
 import {Chart,CartesianGrid} from "react-google-charts";
-import { getDailyWeather, mapWeatherData } from "../api/getData/getData";
+import { getDailyWeather, mapWeatherData,getMedicalVisits } from "../api/getData/getData";
+import { Histogram } from "./Histogram";
 export function HistoricalData() {
     const [daily_weather_data, setDailyWeatherData] = useState([]);
     const [initialDate,setInitialDate] = useState(null)
     const [finalDate,setFinalDate] = useState(null)
-    const [predictions,setPredicitons] = useState([{}])
+    const [predictions,setPredicitons] = useState([])
     const applied = useState(false)
     const [loading, setLoading] = useState(false);
     return (
@@ -26,6 +27,8 @@ export function HistoricalData() {
                 const result =  await getDailyWeather(initialDate,finalDate)
                 const mappedData = mapWeatherData(result);
                 setDailyWeatherData(mappedData);
+                const medical = await getMedicalVisits(initialDate,finalDate)
+                setPredicitons(medical);
                 setLoading(false);
             }}>
                 <div>
@@ -41,8 +44,11 @@ export function HistoricalData() {
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                <Chart chartType='LineChart' width={800} height={500} data={[["dates", "t_max", "t_min", "t_avg"], ...daily_weather_data]} XAxis="date">
-                </Chart>
+                <>
+                    <Chart chartType='LineChart' width={800} height={500} data={[["dates", "t_max", "t_min", "t_avg"], ...daily_weather_data]} XAxis="date">
+                    </Chart>
+                    <Histogram data={predictions} />
+                </>
             )}
         </div>
     );

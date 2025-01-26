@@ -63,12 +63,16 @@ export function RealTimeData() {
         </div>
         <div id="pm_indicators">
           <h2>PM Indicators</h2>
-          {pollutionIndicators.pm25 && pollutionIndicators.pm10 ? (
-            <Chart chartType='BarChart' width={"100%"} data={[
-              ["Indicator", "Concentration"],
-              ["PM2.5", pollutionIndicators.pm25],
-              ["PM10", pollutionIndicators.pm10]
-            ]}/>
+          {pollutionIndicators.pm2_5 && pollutionIndicators.pm10 ? (
+            <Chart
+              chartType='BarChart'
+              width={"100%"} 
+              data={[
+                ["Indicator", "Concentration", { role: "style" }],
+                ["PM2.5", pollutionIndicators.pm2_5, "color: red"],
+                ["PM10", pollutionIndicators.pm10, "color: blue"]
+              ]}
+            />
           ) : (
             <p>Loading...</p>
           )}
