@@ -28,7 +28,6 @@ export function RealTimeData() {
         <table>
           <thead>
             <tr>
-              <th>Hour</th>
               <th>Date</th>
               <th>Humidity (%)</th>
               <th>Temperature (°C)</th>
@@ -38,11 +37,10 @@ export function RealTimeData() {
           <tbody>
             {weatherData.map((w, index) => (
               <tr key={index}>
-                <td>{w.hour}</td>
-                <td>{w.date}</td>
-                <td>{w.humidity}%</td>
-                <td>{w.temperature}°C</td>
-                <td>{w.description}</td>
+                <td>{w.fecha}</td>
+                <td>{w.humedad}%</td>
+                <td>{w.temperatura}°C</td>
+                <td>{w.descripcion}</td>
               </tr>
             ))}
           </tbody>

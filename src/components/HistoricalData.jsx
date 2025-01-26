@@ -41,7 +41,7 @@ export function HistoricalData() {
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                <Chart chartType='LineChart' width={600} height={300} data={[["dates", "t_max", "t_min", "t_avg"], ...daily_weather_data]} XAxis="date">
+                <Chart chartType='LineChart' width={800} height={500} data={[["dates", "t_max", "t_min", "t_avg"], ...daily_weather_data]} XAxis="date">
                 </Chart>
             )}
         </div>

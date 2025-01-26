@@ -1,5 +1,5 @@
 export async function getWeatherData(date) {
-  const response = await fetch('https://678fb69a49875e5a1a930e10.mockapi.io/api/v1/weather');
+  const response = await fetch('http://localhost:5000/api/v1/weatherData');
   const data = await response.json();
   console.log(data);
   return data;
